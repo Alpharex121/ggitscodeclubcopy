@@ -42,7 +42,7 @@ router.get("/logout", auth, async (req, res) => {
     if (token) {
       req.user.tokens = [];
 
-      res.clearCookie("jwt", {
+      res.clearCookie({
         domain: "ggitscodeclubcopy.vercel.app",
         path: "/",
       });
