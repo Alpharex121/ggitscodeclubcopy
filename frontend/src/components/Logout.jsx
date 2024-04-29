@@ -38,7 +38,7 @@ const Logout = () => {
       console.log(data);
       if (data.status == 200) {
         alert("Logged out seccuessfull");
-        // Navigate("/");
+        Navigate("/");
       }
     } catch (error) {
       console.log(error);
