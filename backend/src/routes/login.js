@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
       const token = await userCred.generateAuthToken();
 
       res.cookie("jwt", token, {
-        maxAge: 5000,
+        maxAge: 90000,
         secure: true,
         sameSite: "none",
       });
