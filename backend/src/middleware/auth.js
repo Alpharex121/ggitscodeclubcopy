@@ -6,9 +6,8 @@ const auth = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
     console.log(token);
-    const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(verifyUser);
     if (verifyUser) {
+      const verifyUser = jwt.verify(token, process.env.SECRET_KEY);
       const user = await addRole.findOne({ _id: verifyUser._id });
       req.token = token;
       req.user = user;
