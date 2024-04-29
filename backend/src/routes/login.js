@@ -23,6 +23,7 @@ router.post("/", async (req, res) => {
 
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 3000000),
+        httpOnly: true,
         secure: true,
         sameSite: "none",
       });
@@ -38,41 +39,24 @@ router.post("/", async (req, res) => {
 router.get("/logout", auth, async (req, res) => {
   try {
     const token = req.cookies.jwt;
-    console.log(token);
     if (token) {
       req.user.tokens = [];
-
-      res.clearCookie("jwt");
+      res.clearCookie("jwt", {
+        domain: ".ggitsstudentsapi.vercel.app",
+        path: "/",
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+      });
       await req.user.save();
-      console.log(res);
-      res.status(200).send("logout successfull");
+      res.status(200).send("Logout successful");
+    } else {
+      res.status(401).send("User not logged in.");
     }
   } catch (error) {
-    console.log(error);
-    console.log("user not logged in");
-    res.status(401).send("User not logged in.");
+    console.error("Error occurred during logout:", error);
+    res.status(500).send("Internal Server Error");
   }
 });
-// router.post("/logout", auth, async (req, res) => {
-//   try {
-//     const token = req.cookies.jwt;
-//     console.log(token);
-//     if (token) {
-//       req.user.tokens = [];
-
-//       res.clearCookie("jwt", {
-//         domain: "ggitscodeclubcopy.vercel.app",
-//         path: "/",
-//       });
-//       await req.user.save();
-//       console.log(res);
-//       res.status(200).send("logout successfull");
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     console.log("user not logged in");
-//     res.status(401).send("User not logged in.");
-//   }
-// });
 
 module.exports = router;
