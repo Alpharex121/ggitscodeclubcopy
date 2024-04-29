@@ -29,10 +29,10 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      const data = await axios.post(
+      const data = await axios.get(
         "https://ggitscodeclubcopy.vercel.app/login/logout",
         {
-          Credential: "same-origin",
+          withCredentials: true,
         }
       );
       console.log(data);
