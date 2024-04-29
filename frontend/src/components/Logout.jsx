@@ -32,7 +32,7 @@ const Logout = () => {
       const data = await axios.post(
         "https://ggitscodeclubcopy.vercel.app/login/logout",
         {
-          withCredentials: "same-origin",
+          creadentials: "same-origin",
         }
       );
       console.log(data);
