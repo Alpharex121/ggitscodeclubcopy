@@ -48,7 +48,6 @@ router.get("/logout", auth, async (req, res) => {
         domain: "ggitscodeclubcopy.vercel.app",
         path: "/",
       });
-      req.session.destroy();
       await req.user.save();
       res.status(200).send("logout successfull", res);
     }
