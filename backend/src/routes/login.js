@@ -50,8 +50,7 @@ router.get("/logout", auth, async (req, res) => {
       });
       await req.user.save();
       console.log(res);
-      console.log(res);
-      res.status(200).send(res);
+      res.status(200).send("logout successfull");
     }
   } catch (error) {
     console.log(error);
