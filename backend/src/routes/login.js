@@ -45,6 +45,7 @@ router.get("/logout", auth, async (req, res) => {
         domain: ".ggitsstudentsapi.vercel.app",
         path: "/",
       });
+      res.cookie("jwt", "");
       await req.user.save();
       res.status(200).send("logout successfull");
     }
