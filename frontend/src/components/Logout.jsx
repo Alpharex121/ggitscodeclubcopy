@@ -30,20 +30,17 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      await api
-        .post("https://ggitscodeclubcopy.vercel.app/login/logout")
-        .then((data) => {
-          if (data.status == 200) {
-            alert("Logged out seccuessfull");
-            // Navigate("/");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log("Error occur while logging out");
-        });
+      const data = await api.post(
+        "https://ggitscodeclubcopy.vercel.app/login/logout"
+      );
+      console.log(data);
+      if (data.status == 200) {
+        alert("Logged out seccuessfull");
+        // Navigate("/");
+      }
     } catch (error) {
       console.log(error);
+      console.log("Error occur while logging out");
     }
   };
 
