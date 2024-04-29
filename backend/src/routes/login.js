@@ -40,6 +40,7 @@ router.post("/", async (req, res) => {
 router.get("/logout", auth, async (req, res) => {
   try {
     const token = req.cookies.jwt;
+    console.log(token);
     if (token) {
       req.user.tokens = [];
 
@@ -52,6 +53,7 @@ router.get("/logout", auth, async (req, res) => {
       res.status(200).send("logout successfull", res);
     }
   } catch (error) {
+    console.log(error);
     console.log("user not logged in");
     res.status(401).send("User not logged in.");
   }
