@@ -40,7 +40,7 @@ const Logout = () => {
         console.log(cookies);
         removeCookie("jwt");
         alert("Logged out seccuessfull");
-        // Navigate("/");
+        Navigate("/");
       }
     } catch (error) {
       console.log(error);

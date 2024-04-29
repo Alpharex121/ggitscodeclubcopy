@@ -25,8 +25,6 @@ router.post("/", async (req, res) => {
         maxAge: 3600000,
         secure: true,
         sameSite: "none",
-        domain: "ggitsstudentsapi.vercel.app",
-        path: "/",
       });
       res.status(200).send(userCred);
     } else {
