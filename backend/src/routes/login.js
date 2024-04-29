@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
         expires: new Date(Date.now() + 3000000),
         httpOnly: false,
         secure: true,
+        sameSite: true,
       });
       res.status(200).send(userCred);
     } else {
