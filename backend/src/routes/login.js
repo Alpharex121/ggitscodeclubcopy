@@ -58,5 +58,26 @@ router.get("/logout", auth, async (req, res) => {
     res.status(401).send("User not logged in.");
   }
 });
+router.post("/logout", auth, async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+    console.log(token);
+    if (token) {
+      req.user.tokens = [];
+
+      res.clearCookie("jwt", {
+        domain: "ggitscodeclubcopy.vercel.app",
+        path: "/",
+      });
+      await req.user.save();
+      console.log(res);
+      res.status(200).send("logout successfull");
+    }
+  } catch (error) {
+    console.log(error);
+    console.log("user not logged in");
+    res.status(401).send("User not logged in.");
+  }
+});
 
 module.exports = router;
