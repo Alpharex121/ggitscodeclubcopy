@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const getUserData = () => {
-  const [user, setUser] = useState("");
   const api = axios.create({
     withCredentials: true,
     headers: {
@@ -18,7 +17,6 @@ const getUserData = () => {
       const data = await api.get("https://ggitscodeclubcopy.vercel.app/login", {
         withCredentials: true,
       });
-      setUser(data.data);
     } catch (error) {
       return;
     }

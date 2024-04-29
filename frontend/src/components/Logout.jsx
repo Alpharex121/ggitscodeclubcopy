@@ -3,9 +3,11 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Header from "./Header";
+import { useCookies } from "react-cookie";
 
 const Logout = () => {
   const [isVerified, setIsVerified] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
   const Navigate = useNavigate();
   const api = axios.create({
     withCredentials: true,
@@ -35,6 +37,8 @@ const Logout = () => {
       );
       console.log(data);
       if (data.status == 200) {
+        console.log(cookies);
+        removeCookie("jwt");
         alert("Logged out seccuessfull");
         // Navigate("/");
       }
