@@ -15,7 +15,7 @@ const JobsPost = () => {
   });
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "jobs") {
         setUser(data.data.role);
       } else {
@@ -43,7 +43,7 @@ const JobsPost = () => {
     const eligibility = e.target.eligibility.value;
     const link = e.target.link.value;
     api
-      .post("https://ggitsstudentsapi.vercel.app/jobs", {
+      .post("https://ggitscodeclubcopy.vercel.app/jobs", {
         title,
         description,
         tag,
