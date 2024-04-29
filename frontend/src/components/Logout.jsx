@@ -29,8 +29,8 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login/logout",
+      const data = await axios.post(
+        "https://ggitscodeclubcopy.vercel.app/logout",
         {
           withCredentials: true,
         }
@@ -38,7 +38,7 @@ const Logout = () => {
       console.log(data);
       if (data.status == 200) {
         alert("Logged out seccuessfull");
-        Navigate("/");
+        // Navigate("/");
       }
     } catch (error) {
       console.log(error);

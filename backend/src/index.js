@@ -37,6 +37,7 @@ const jobRouter = require("./routes/jobs.js");
 const newsRouter = require("./routes/news.js");
 const loginRouter = require("./routes/login.js");
 const leaderboardRouter = require("./routes/leaderboard.js");
+const logoutRouter = require("./routes/logout.js");
 
 //configuring routes
 app.use("/admin", rolesRouter);
@@ -44,6 +45,7 @@ app.use("/resources", resourcesRouter);
 app.use("/jobs", jobRouter);
 app.use("/news", newsRouter);
 app.use("/login", loginRouter);
+app.use("/logout", logoutRouter);
 app.use("/leaderboard", leaderboardRouter);
 
 app.listen(port, (req, res) => {
