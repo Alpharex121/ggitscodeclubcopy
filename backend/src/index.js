@@ -44,7 +44,6 @@ app.use("/resources", resourcesRouter);
 app.use("/jobs", jobRouter);
 app.use("/news", newsRouter);
 app.use("/login", loginRouter);
-app.use("/logout", logoutRouter);
 app.use("/leaderboard", leaderboardRouter);
 
 app.listen(port, (req, res) => {
