@@ -21,11 +21,11 @@ router.post("/", async (req, res) => {
     if (passMatch) {
       const token = await userCred.generateAuthToken();
 
-      // res.cookie("jwt", token, {
-      //   expires: new Date(Date.now() + 3000000),
-      //   httpOnly: false,
-      //   secure: true,
-      // });
+      res.cookie("jwt", token, {
+        expires: new Date(Date.now() + 3000000),
+        httpOnly: false,
+        secure: true,
+      });
       res.status(200).send(userCred);
     } else {
       res.status(401).send("password not matched");
