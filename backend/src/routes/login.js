@@ -25,6 +25,8 @@ router.post("/", async (req, res) => {
         expires: new Date(Date.now() + 3000000),
         secure: true,
         sameSite: "none",
+        domain: "ggitscodeclubcopy.vercel.app",
+        path: "/",
       });
       res.status(200).send(userCred);
     } else {
@@ -40,13 +42,13 @@ router.get("/logout", auth, async (req, res) => {
     const token = req.cookies.jwt;
     if (token) {
       req.user.tokens = [];
-      await req.user.save();
+
       res.clearCookie("jwt", {
         domain: "ggitscodeclubcopy.vercel.app",
         path: "/",
       });
       req.session.destroy();
-
+      await req.user.save();
       res.status(200).send("logout successfull", res);
     }
   } catch (error) {
