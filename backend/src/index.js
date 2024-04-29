@@ -37,7 +37,6 @@ const jobRouter = require("./routes/jobs.js");
 const newsRouter = require("./routes/news.js");
 const loginRouter = require("./routes/login.js");
 const leaderboardRouter = require("./routes/leaderboard.js");
-const logoutRouter = require("./routes/logout.js");
 
 //configuring routes
 app.use("/admin", rolesRouter);
