@@ -7,14 +7,15 @@ import Header from "./Header";
 const Logout = () => {
   const [isVerified, setIsVerified] = useState(false);
   const Navigate = useNavigate();
+  const api = axios.create({
+    withCredentials: true,
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
   const verifyUser = async () => {
     try {
-      const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login",
-        {
-          withCredentials: true,
-        }
-      );
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.status == 200) {
         setIsVerified(true);
       }
@@ -29,11 +30,8 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      const data = await axios.post(
-        "https://ggitscodeclubcopy.vercel.app/logout",
-        {
-          withCredentials: true,
-        }
+      const data = await api.post(
+        "https://ggitscodeclubcopy.vercel.app/logout"
       );
       console.log(data);
       if (data.status == 200) {
