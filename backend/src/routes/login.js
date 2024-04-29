@@ -42,8 +42,10 @@ router.get("/logout", auth, async (req, res) => {
     if (token) {
       req.user.tokens = [];
 
-      res.clearCookie("jwt");
-      res.end();
+      res.clearCookie("jwt", {
+        domain: "ggitscodeclubcopy.vercel.app",
+        path: "/",
+      });
       await req.user.save();
       console.log(res);
       res.status(200).send("logout successfull");

@@ -15,7 +15,9 @@ const getUserData = () => {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login", {
+        withCredentials: true,
+      });
       setUser(data.data);
     } catch (error) {
       return;
