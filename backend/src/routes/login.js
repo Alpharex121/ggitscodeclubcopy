@@ -23,8 +23,8 @@ router.post("/", async (req, res) => {
 
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 3000000),
-        secure:true,
-        sameSite:'none'
+        secure: true,
+        sameSite: "none",
       });
       res.status(200).send(userCred);
     } else {
@@ -37,16 +37,17 @@ router.post("/", async (req, res) => {
 
 router.get("/logout", auth, async (req, res) => {
   try {
-    console.log("dkfsa");
     const token = req.cookies.jwt;
     if (token) {
       req.user.tokens = [];
-      res.clearCookie("jwt", {
-        domain: "ggitsstudentsapi.vercel.app",
-        path: "/"
-      });
       await req.user.save();
-      res.status(200).send("logout successfull");
+      res.clearCookie("jwt", {
+        domain: "ggitscodeclubcopy.vercel.app",
+        path: "/",
+      });
+      req.session.destroy();
+
+      res.status(200).send("logout successfull", res);
     }
   } catch (error) {
     console.log("user not logged in");
