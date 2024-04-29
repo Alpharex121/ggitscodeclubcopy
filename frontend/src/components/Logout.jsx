@@ -37,8 +37,6 @@ const Logout = () => {
       );
       console.log(data);
       if (data.status == 200) {
-        console.log(cookies);
-        console.log(document.cookie);
         removeCookie("jwt");
         alert("Logged out seccuessfull");
         Navigate("/");
