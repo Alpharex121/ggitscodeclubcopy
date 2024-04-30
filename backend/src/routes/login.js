@@ -25,7 +25,6 @@ router.post("/", async (req, res) => {
         maxAge: 900000,
         secure: true,
         sameSite: "none",
-        domain: "ggitscodeclubcopy.vercel.app",
       });
       res.status(200).send(userCred);
     } else {
@@ -35,14 +34,13 @@ router.post("/", async (req, res) => {
     res.status(401).send("Invalid cred");
   }
 });
-
 router.get("/logout", auth, async (req, res) => {
   try {
     console.log("dkfsa");
     const token = req.cookies;
     console.log(token); //here
     req.user.tokens = [];
-    res.clearCookie("jwt", { domain: "ggitscodeclubcopy.vercel.app" });
+    res.clearCookie("jwt", { domain: ".ggitscodeclubcopy.vercel.app" });
     await req.user.save();
     console.log(req.headers.cookie);
     res.status(200).send("logout successfull");
