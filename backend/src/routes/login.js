@@ -43,6 +43,7 @@ router.get("/logout", auth, async (req, res) => {
     res.clearCookie("jwt", {
       domain: "ggitscodeclubcopy.vercel.app",
       sameSite: "none",
+      path: "/",
     });
     await req.user.save();
     console.log(req.headers.cookie);
