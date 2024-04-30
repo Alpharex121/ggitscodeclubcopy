@@ -25,7 +25,6 @@ router.post("/", async (req, res) => {
         maxAge: 900000,
         secure: true,
         sameSite: "none",
-        domain: ".ggitscodeclubcopy.vercel.app",
       });
       res.status(200).send(userCred);
     } else {
