@@ -39,12 +39,11 @@ router.get("/logout", auth, async (req, res) => {
   try {
     console.log("dkfsa");
     const token = req.cookies.jwt;
-    if (token) {
-      req.user.tokens = [];
-      res.clearCookie("jwt");
-      await req.user.save();
-      res.status(200).send("logout successfull");
-    }
+    console.log(token);
+    req.user.tokens = [];
+    res.clearCookie("jwt");
+    await req.user.save();
+    res.status(200).send("logout successfull");
   } catch (error) {
     console.log("user not logged in");
     res.status(401).send("User not logged in.");
