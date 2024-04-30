@@ -40,7 +40,7 @@ router.get("/logout", auth, async (req, res) => {
     console.log("dkfsa");
     const token = req.cookies;
     console.log(req.headers.cookie);
-    console.log(token);
+    console.log(token); //
     req.user.tokens = [];
     res.clearCookie("jwt");
     await req.user.save();
