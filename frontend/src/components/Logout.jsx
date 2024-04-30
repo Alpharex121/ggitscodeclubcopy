@@ -33,7 +33,8 @@ const Logout = () => {
   const logoutUser = async () => {
     try {
       const data = await api.get(
-        "https://ggitscodeclubcopy.vercel.app/login/logout"
+        "https://ggitscodeclubcopy.vercel.app/login/logout",
+        { withCredentials: true }
       );
       console.log(data);
       if (data.status == 200) {
