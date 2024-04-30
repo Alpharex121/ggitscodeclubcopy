@@ -39,7 +39,7 @@ router.get("/logout", auth, async (req, res) => {
   try {
     console.log("dkfsa");
     const token = req.cookies;
-    console.log(token); //
+    console.log(token); //here
     console.log(req.headers.cookie);
     req.user.tokens = [];
     res.clearCookie("jwt", { domain: "ggitscodeclubcopy.vercel.app" });
