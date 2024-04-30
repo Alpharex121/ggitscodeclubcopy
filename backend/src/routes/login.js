@@ -38,7 +38,8 @@ router.post("/", async (req, res) => {
 router.get("/logout", auth, async (req, res) => {
   try {
     console.log("dkfsa");
-    const token = req.cookies.jwt;
+    const token = req.cookies;
+    console.log(req.headers.cookie);
     console.log(token);
     req.user.tokens = [];
     res.clearCookie("jwt");
