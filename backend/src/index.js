@@ -19,7 +19,10 @@ const corsOptionss = {
 };
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://ggitscodeclubcopy-up9q.vercel.app"
+  );
 
   // Allow specific HTTP methods
   res.setHeader(
