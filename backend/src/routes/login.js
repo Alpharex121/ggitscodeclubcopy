@@ -40,10 +40,10 @@ router.get("/logout", auth, async (req, res) => {
     console.log("dkfsa");
     const token = req.cookies;
     console.log(token); //here
-    console.log(req.headers.cookie);
     req.user.tokens = [];
     res.clearCookie("jwt", { domain: "ggitscodeclubcopy.vercel.app" });
     await req.user.save();
+    console.log(req.headers.cookie);
     res.status(200).send("logout successfull");
   } catch (error) {
     console.log("user not logged in");
