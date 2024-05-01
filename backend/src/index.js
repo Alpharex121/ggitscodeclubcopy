@@ -36,6 +36,7 @@ app.use((req, res, next) => {
     "X-Requested-With,Content-Type,Authorization"
   );
   res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
 });
 
 app.use(cors(corsOptionss));
