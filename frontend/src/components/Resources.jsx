@@ -14,8 +14,8 @@ const Resources = () => {
   return (
     <>
       <Header />
-      <div className="container bg-gray-100 flex justify-center h-full py-6 md:py-10 lg:py-14">
-        <div className="mx-auto max-w-[76rem]">
+      <div className="container bg-gray-100 max-w-full flex justify-center h-full py-6 md:py-10 lg:py-14">
+        <div className="mx-auto max-w-full">
           <div className="space-y-6">
             {user.role == "admin" || user.role == "resources" ? (
               <Link to="/resourcespost">

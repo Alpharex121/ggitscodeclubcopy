@@ -20,7 +20,7 @@ function MainBody() {
     <>
       <Header />
       <div
-        className="container bg-gray-100 py-6 md:py-10 lg:py-14"
+        className="uppercase container sm: bg-gray-100 max-w-full py-6 md:py-10 lg:py-14"
         data-id="21"
       >
         <div className="mx-auto max-w-6xl px-4" data-id="22">

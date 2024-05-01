@@ -15,7 +15,7 @@ function Header() {
   });
 
   return (
-    <div className="container flex items-center gap-4 px-4 py-2 md:gap-6 md:px-6">
+    <div className="container flex items-centergap-4 px-4 py-2  sm: bg-gray-100 max-w-full md:gap-6 md:px-6 ">
       <a className="flex gap-2 font-semibold items-center dark:text-black-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
