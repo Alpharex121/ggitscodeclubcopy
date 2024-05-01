@@ -3,21 +3,18 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Header from "./Header";
-import { useCookies } from "react-cookie";
 
 const Logout = () => {
   const [isVerified, setIsVerified] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
   const Navigate = useNavigate();
-  const api = axios.create({
-    withCredentials: true,
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
   const verifyUser = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await axios.get(
+        "https://ggitsstudentsapi.vercel.app/login",
+        {
+          withCredentials: true,
+        }
+      );
       if (data.status == 200) {
         setIsVerified(true);
       }
@@ -32,13 +29,14 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      const data = await api.get(
-        "https://ggitscodeclubcopy.vercel.app/login/logout",
-        { withCredentials: true }
+      const data = await axios.get(
+        "https://ggitsstudentsapi.vercel.app/login/logout",
+        {
+          withCredentials: true,
+        }
       );
       console.log(data);
       if (data.status == 200) {
-        removeCookie("jwt");
         alert("Logged out seccuessfull");
         Navigate("/");
       }

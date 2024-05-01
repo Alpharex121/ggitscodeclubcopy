@@ -22,9 +22,9 @@ router.post("/", async (req, res) => {
       const token = await userCred.generateAuthToken();
 
       res.cookie("jwt", token, {
-        maxAge: 900000,
-        secure: true,
-        sameSite: "none",
+        expires: new Date(Date.now() + 3000000),
+        secure:true,
+        sameSite:'none'
       });
       res.status(200).send(userCred);
     } else {
@@ -34,21 +34,20 @@ router.post("/", async (req, res) => {
     res.status(401).send("Invalid cred");
   }
 });
+
 router.get("/logout", auth, async (req, res) => {
   try {
     console.log("dkfsa");
-    const token = req.cookies;
-    console.log(token); //here
-    req.user.tokens = [];
-    res.clearCookie("jwt", {
-      domain: "ggitscodeclubcopy.vercel.app",
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    await req.user.save();
-    console.log(req.headers.cookie);
-    res.status(200).send("logout successfull");
+    const token = req.cookies.jwt;
+    if (token) {
+      req.user.tokens = [];
+      res.clearCookie("jwt", {
+        domain: "ggitsstudentsapi.vercel.app",
+        path: "/"
+      });
+      await req.user.save();
+      res.status(200).send("logout successfull");
+    }
   } catch (error) {
     console.log("user not logged in");
     res.status(401).send("User not logged in.");

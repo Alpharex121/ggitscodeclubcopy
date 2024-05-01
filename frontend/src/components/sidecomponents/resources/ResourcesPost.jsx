@@ -15,7 +15,7 @@ const ResourcesPost = () => {
   });
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "resources") {
         setUser(data.data.role);
       } else {
@@ -42,7 +42,7 @@ const ResourcesPost = () => {
     const tag = e.target.tag.value;
     const link = e.target.link.value;
     api
-      .post("https://ggitscodeclubcopy.vercel.app/resources", {
+      .post("https://ggitsstudentsapi.vercel.app/resources", {
         title,
         description,
         moredescription,

@@ -17,7 +17,7 @@ const Login = () => {
       },
     });
     api
-      .post("https://ggitscodeclubcopy.vercel.app/login", {
+      .post("https://ggitsstudentsapi.vercel.app/login", {
         username,
         password,
       })
