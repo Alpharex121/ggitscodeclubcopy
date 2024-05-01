@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 3000000),
         secure: true,
-        domain: "httpsggitscodeclubcopy.vercel.app",
+        domain: "ggitscodeclubcopy.vercel.app",
         sameSite: "none",
       });
       res.status(200).send(userCred);
