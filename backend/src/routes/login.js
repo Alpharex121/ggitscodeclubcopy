@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 3000000),
         secure: true,
-        domain: "ggitsstudentsapi.vercel.app",
         sameSite: "none",
       });
       res.status(200).send(userCred);
@@ -43,7 +42,6 @@ router.get("/logout", auth, async (req, res) => {
     if (token) {
       req.user.tokens = [];
       res.clearCookie("jwt", {
-        domain: "ggitsstudentsapi.vercel.app",
         sameSite: "none",
         secure: true,
         path: "/",
