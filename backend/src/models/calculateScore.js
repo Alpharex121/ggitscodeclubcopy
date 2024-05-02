@@ -99,9 +99,11 @@ async function codechef(handler) {
 
     const ps = $(".rating-data-section h3").text().trim();
     const nums = ps.match(/\((\d+)\)/g).map((x) => parseInt(x.slice(1, -1)));
-
+    let i=0;
     for (let num of nums) {
       sum += num;
+      i++;
+      if(i==2)break;
     }
   } catch (error) {
     console.error(`Error in codechef for ${handler}: ${error.message}`);
@@ -296,7 +298,7 @@ async function runCalculations(handles) {
 
         const codechefScore = await codechef(handler);
         if (codechefScore.rating != 0 && codechefScore.rating != undefined) {
-          score += (codechefScore.rating / 1000) * codechefScore.sum * 2;
+          score += (codechefScore.rating / 500) * codechefScore.sum;
           rating += parseFloat(codechefScore.rating);
           p++;
         }

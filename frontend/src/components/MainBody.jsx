@@ -20,10 +20,10 @@ function MainBody() {
     <>
       <Header />
       <div
-        className="uppercase container sm: bg-gray-100 max-w-full py-6 md:py-10 lg:py-14"
+        className="container max-w-full bg-gray-100 py-6  md:py-10 lg:py-14"
         data-id="21"
       >
-        <div className="mx-auto max-w-6xl px-4" data-id="22">
+        <div className="max-w-full  px-4" data-id="22">
           <div className="space-y-6" data-id="23">
             {user.role == "admin" || user.role == "leaderboard" ? (
               <div className="flex justify-end  mb-4 mr-64">
@@ -49,14 +49,14 @@ function MainBody() {
               </p>
             </div>
             <div
-              className="mx-auto grid max-w-3xl items-stretch justify-center gap-4"
+              className="mx-auto max-w-2/4 sm:flex sm:flex-col sm:w-1/3 sm:max-w-full  items-stretch justify-center gap-4 "
               data-id="27"
             >
               {!shimdata.length ? (
                 <Shimmerui />
               ) : (
                 shimdata.map((ldata, index) => (
-                  <div key={index} className="w-full">
+                  <div key={index} className="w-full   ">
                     <Component
                       name={ldata.Name}
                       rank={ldata.Rank}

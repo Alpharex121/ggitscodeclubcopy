@@ -9,12 +9,9 @@ const Logout = () => {
   const Navigate = useNavigate();
   const verifyUser = async () => {
     try {
-      const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login",
-        {
-          withCredentials: true,
-        }
-      );
+      const data = await axios.get("https://ggitsstudentsapi.vercel.app/login", {
+        withCredentials: true,
+      });
       if (data.status == 200) {
         setIsVerified(true);
       }
@@ -29,19 +26,14 @@ const Logout = () => {
   };
   const logoutUser = async () => {
     try {
-      const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login/logout",
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(data);
+      const data = await axios.get("https://ggitsstudentsapi.vercel.app/login/logout", {
+        withCredentials: true,
+      });
       if (data.status == 200) {
         alert("Logged out seccuessfull");
         Navigate("/");
       }
     } catch (error) {
-      console.log(error);
       console.log("Error occur while logging out");
     }
   };
