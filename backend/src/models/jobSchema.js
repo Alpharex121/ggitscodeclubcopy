@@ -25,6 +25,7 @@ const jobSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  timestamps: true,
 });
 
 const addJob = new mongoose.model("job", jobSchema);

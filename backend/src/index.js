@@ -11,7 +11,7 @@ const auth = require("./middleware/auth.js");
 require("./db/Connection.js");
 
 const corsOptionss = {
-  origin: "https://ggits-coding-club.vercel.app",
+  origin: "https://ggitscodeclubcopy-up9q.vercel.app",
   methods: "GET, POST, PUT, DELETE, HEAD",
   credentials: true,
   optionSuccessStatus: 200,
@@ -20,7 +20,7 @@ const corsOptionss = {
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://ggits-coding-club.vercel.app"
+    "https://ggitscodeclubcopy-up9q.vercel.app"
   );
   next();
 });
