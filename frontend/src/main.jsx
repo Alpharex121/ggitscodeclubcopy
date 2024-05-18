@@ -57,12 +57,7 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true,
-        loader: async () => redirect("/leaderboard"),
-      },
-      //
-      {
-        path: "leaderboard",
+        path: "/",
         element: <MainBody />,
       },
       {
