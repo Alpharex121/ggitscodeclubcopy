@@ -62,7 +62,7 @@ const appRouter = createBrowserRouter([
       },
       //
       {
-        path: "/leaderboard",
+        path: "leaderboard",
         element: <MainBody />,
       },
       {
