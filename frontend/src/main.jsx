@@ -57,7 +57,11 @@ const appRouter = createBrowserRouter([
     element: <App />,
     children: [
       {
-        index: true,
+        path: "/",
+        element: <MainBody />,
+      },
+      {
+        path: "/leaderboard",
         element: <MainBody />,
       },
       {
@@ -89,7 +93,7 @@ const appRouter = createBrowserRouter([
         element: <NewsDelete />,
       },
       {
-        path: "jobs",
+        path: "/jobs",
         element: <Jobs />,
       },
       {
