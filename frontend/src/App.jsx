@@ -40,7 +40,7 @@ import getNews from "./utils/getNews";
 
 const App = () => {
   return (
-    <>
+    <div>
       <Provider store={appStore}>
         <PerModal />
         <ToastContainer />
@@ -48,7 +48,7 @@ const App = () => {
         <Outlet />
         <Footer />
       </Provider>
-    </>
+    </div>
   );
 };
 
