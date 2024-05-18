@@ -61,7 +61,7 @@ const appRouter = createBrowserRouter([
         element: <MainBody />,
       },
       {
-        path: "/leaderboard",
+        path: "leaderboard",
         element: <MainBody />,
       },
       {
@@ -77,7 +77,7 @@ const appRouter = createBrowserRouter([
         element: <LeaderBoardDelete />,
       },
       {
-        path: "/news",
+        path: "news",
         element: <News />,
       },
       {
