@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUsers from "../../../utils/getUser";
 import getNews from "../../../utils/getNews";
+import { toast } from "react-toastify";
 
 const Adminedit = () => {
   const Navigate = useNavigate();
@@ -23,12 +24,18 @@ const Adminedit = () => {
       if (data.data.role == "admin") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -63,22 +70,26 @@ const Adminedit = () => {
       })
       .then((response) => {
         if (response.status == 200) {
-          alert("user edited successfully!");
-          console.log(
-            "new: " +
-              response.data.password +
-              " " +
-              response.data.confirmpassword
-          );
+          toast.success("User edited successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/admin");
         } else {
-          alert("Error occured while editing user data!");
+          toast.error("Error occured while editing user data!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/admin");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
@@ -86,7 +97,6 @@ const Adminedit = () => {
 
   return (
     <div>
-      <Header />
       {console.log(
         "old: " + fileteredData.password + " " + fileteredData.confirmpassword
       )}

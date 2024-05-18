@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Navbar";
 import Header from "../../Header";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const ResourcesDelete = () => {
   const Navigate = useNavigate();
@@ -23,12 +23,18 @@ const ResourcesDelete = () => {
       if (data.data.role == "admin" || data.data.role == "resources") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -54,27 +60,33 @@ const ResourcesDelete = () => {
       .delete("https://ggitscodeclubcopy.vercel.app/resources/" + resourceid)
       .then((response) => {
         if (response.status == 200) {
-          alert("Resource Deleted Successfully!");
+          toast.success("Resource deleted succesfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/resources");
           console.log(response);
         } else {
-          alert("Error while deleting news!");
+          toast.error("Error occured while deleting resource!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/resources");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
   };
 
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <></>;
 };
 
 export default ResourcesDelete;

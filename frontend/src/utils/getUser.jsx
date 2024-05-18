@@ -1,7 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addUsersdata } from "../reduxStore/dataSlice";
 
 const getUsers = () => {
+  const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const api = axios.create({
     withCredentials: true,
@@ -18,6 +21,7 @@ const getUsers = () => {
     try {
       const data = await api.get("https://ggitscodeclubcopy.vercel.app/admin");
       setUsers([...data.data]);
+      // dispatch(addUsersdata(users));
     } catch (error) {
       console.log(error);
       console.log("error fetching users");

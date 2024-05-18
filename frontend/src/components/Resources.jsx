@@ -1,32 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Navbar from "./Navbar";
 import getUserData from "../utils/getUserData";
 import getResources from "../utils/getResources";
 import { Button } from "@chakra-ui/react";
 import Header from "./Header";
 import ResourcesCard from "./helper/ResourcesCard";
 import ResourceShimmer from "./shimmers/ResourceShimmer";
+import { useDispatch, useSelector } from "react-redux";
 const Resources = () => {
   const Navigate = useNavigate();
   const [shimdata, setShimData] = useState([]);
-  const user = getUserData([]);
-  const resources = getResources([]);
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const resources = useSelector((store) => store.datas.resourcesData);
 
   useEffect(() => {
-    setShimData(resources); // This will log the previous state, not the updated one
-  }, [resources]); // Include data in the dependency array to trigger useEffect when data changes
-
-  if (!resources) return;
+    !resources && getResources(dispatch);
+  }, []);
 
   return (
     <>
-      <Header />
       <div className="container bg-gray-100 flex max-w-full justify-center h-full py-6 md:py-10 lg:py-14">
         <div className="mx-auto max-w-full">
           <div className="space-y-6">
-            {user.role == "admin" || user.role == "resources" ? (
+            {user != null &&
+            (user.role == "admin" || user.role == "resources") ? (
               <Link to="/resourcespost">
                 <div className="flex justify-end mb-4">
                   <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2  px-4 rounded ml-auto">
@@ -42,10 +41,10 @@ const Resources = () => {
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Get yourself equipped with latest technologies in the industry.
               </p>
-              {!shimdata.length ? (
+              {!resources ? (
                 <ResourceShimmer />
               ) : (
-                shimdata.map((resource, index) => (
+                resources.map((resource, index) => (
                   <div key={index} className="flex flex-col ">
                     <div className="w-full ">
                       <ResourcesCard
@@ -56,7 +55,8 @@ const Resources = () => {
                         link={resource.link}
                       />
                     </div>
-                    {user.role === "admin" || user.role === "resources" ? (
+                    {user != null &&
+                    (user.role == "admin" || user.role == "resources") ? (
                       <div className="flex mt-2 ml-auto">
                         <Link to={"/resourcesedit/" + resource._id}>
                           <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

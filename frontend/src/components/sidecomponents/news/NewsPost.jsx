@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
+import { toast } from "react-toastify";
 
 const NewsPost = () => {
   const Navigate = useNavigate();
@@ -19,12 +20,18 @@ const NewsPost = () => {
       if (data.data.role == "admin" || data.data.role == "news") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -51,16 +58,26 @@ const NewsPost = () => {
       })
       .then((response) => {
         if (response.status == 200) {
-          alert("news posted successfully!");
+          toast.success("News posted successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/news");
         } else {
-          alert("Error occured while posting news!");
+          toast.error("Error occured while posting news!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/news");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
@@ -68,7 +85,6 @@ const NewsPost = () => {
 
   return (
     <div>
-      <Header />
       <form className="max-w-sm mx-auto" onSubmit={handleOnSubmit}>
         <div className="mb-5">
           <input

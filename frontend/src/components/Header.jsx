@@ -2,20 +2,46 @@ import React, { useEffect, useState } from "react";
 import getUserData from "../utils/getUserData";
 import mainlogo from "../assets/mainlogo.png";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { addUser } from "../reduxStore/userSlice";
 
 function Header() {
   // const Navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const [role, setRole] = useState("");
 
-  const user = getUserData();
-
-  useEffect(() => {
-    setRole(user.role);
+  const api = axios.create({
+    withCredentials: true,
+    headers: {
+      "Content-type": "application/json",
+    },
   });
 
+  const getUserData = async () => {
+    try {
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const user = data.data;
+      const { username, role } = user;
+      dispatch(
+        addUser({
+          username: username,
+          role: role,
+        })
+      );
+    } catch (error) {
+      return;
+    }
+  };
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    getUserData();
+    if (user != null) setRole(user.role);
+  }, []);
+
   return (
-    <div className="container h-6  w-full flex pt-1 pl-2  justify-center  sm:bg-gray-100 sm:flex sm:max-w-full sm:items-center sm:gap-4 sm:px-4 sm:py-2 md:gap-6 md:px-6">
+    <div className="container h-6  w-full   flex pt-1 pl-2  justify-center  sm:bg-gray-100   sm:flex sm:max-w-full sm:items-center sm:gap-4 sm:px-4 sm:py-2 md:gap-6 md:px-6">
       <a className=" hidden sm:flex gap-2 font-semibold items-center dark:text-black-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +128,7 @@ function Header() {
           </Link>
         </ul>
       </nav>
-      {user != "" ? (
+      {user != null ? (
         <Link to="/logout">
           <div className="flex items-center gap-4 md:gap-2" data-id="18">
             <a

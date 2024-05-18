@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Navbar";
 import Header from "../../Header";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const NewsDelete = () => {
   const Navigate = useNavigate();
@@ -23,12 +23,18 @@ const NewsDelete = () => {
       if (data.data.role == "admin" || data.data.role == "news") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -54,27 +60,33 @@ const NewsDelete = () => {
       .delete("https://ggitscodeclubcopy.vercel.app/news/" + newsid)
       .then((response) => {
         if (response.status == 200) {
-          alert("News Deleted Successfully!");
+          toast.success("News deleted successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/news");
           console.log(response);
         } else {
-          alert("Error while deleting news!");
+          toast.error("Error occured while deleting news!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/news");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
   };
 
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <></>;
 };
 
 export default NewsDelete;

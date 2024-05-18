@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
+import { toast } from "react-toastify";
 
 const JobsPost = () => {
   const Navigate = useNavigate();
@@ -19,12 +20,18 @@ const JobsPost = () => {
       if (data.data.role == "admin" || data.data.role == "jobs") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -52,16 +59,26 @@ const JobsPost = () => {
       })
       .then((response) => {
         if (response.status == 200) {
-          alert("job posted successfully!");
+          toast.success("Job posted successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/jobs");
         } else {
-          alert("Error occured while posting job!");
+          toast.error("Error occured while posting job", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/jobs");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
         console.log(error);
@@ -70,7 +87,6 @@ const JobsPost = () => {
 
   return (
     <div>
-      <Header />
       <form className="max-w-sm mx-auto" onSubmit={handleOnSubmit}>
         <div className="mb-5">
           <input

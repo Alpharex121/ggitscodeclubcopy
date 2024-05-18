@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Navbar";
 import Header from "../../Header";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Admindelete = () => {
   const Navigate = useNavigate();
@@ -23,12 +23,18 @@ const Admindelete = () => {
       if (data.data.role == "admin") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -55,27 +61,33 @@ const Admindelete = () => {
       .then((response) => {
         console.log(response);
         if (response.status == 200) {
-          alert("User Deleted Successfully!");
+          toast.success("User deleted successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/admin");
           console.log(response);
         } else {
-          alert("Error while deleting user!");
+          toast.error("Error occured while deleting user!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/news");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
   };
 
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <></>;
 };
 
 export default Admindelete;

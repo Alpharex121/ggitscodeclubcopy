@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import getNews from "../../../utils/getNews";
+import { toast } from "react-toastify";
 
 const ResourcesEdit = () => {
   const Navigate = useNavigate();
@@ -24,12 +25,18 @@ const ResourcesEdit = () => {
         setUser(data.data.role);
         return;
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -68,17 +75,27 @@ const ResourcesEdit = () => {
       })
       .then((response) => {
         if (response.status == 200) {
-          alert("resource edited successfully!");
+          toast.success("Resources edited successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/resources");
           return;
         } else {
-          alert("Error occured while posting news!");
+          toast.error("Error occured while editing resource!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/resources");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
@@ -86,7 +103,6 @@ const ResourcesEdit = () => {
 
   return (
     <div>
-      <Header />
       <form className="max-w-sm mx-auto" onSubmit={handleOnSubmit}>
         <div className="mb-5">
           <input

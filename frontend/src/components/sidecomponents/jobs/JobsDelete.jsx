@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../Navbar";
 import Header from "../../Header";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const JobsDelete = () => {
   const Navigate = useNavigate();
@@ -22,12 +22,18 @@ const JobsDelete = () => {
       if (data.data.role == "admin" || data.data.role == "jobs") {
         setUser(data.data.role);
       } else {
-        alert("access denied");
+        toast.warn("Access Denied!", {
+          theme: "colored",
+          autoClose: 3000,
+        });
         Navigate("/");
       }
       return;
     } catch (error) {
-      alert("access denied");
+      toast.warn("Access Denied!", {
+        theme: "colored",
+        autoClose: 3000,
+      });
       Navigate("/");
       return;
     }
@@ -54,27 +60,33 @@ const JobsDelete = () => {
       .then((response) => {
         console.log(response);
         if (response.status == 200) {
-          alert("job Deleted Successfully!");
+          toast.success("Job deleted successfully!", {
+            theme: "colored",
+            autoClose: 3000,
+            position: "top-center",
+          });
           Navigate("/jobs");
           console.log(response);
         } else {
-          alert("Error while deleting news!");
+          toast.error("Error while deleting job!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/jobs");
         }
       })
       .catch((error) => {
         if (error.response.status == 401) {
-          alert("Access Denied");
+          toast.warn("Access Denied!", {
+            theme: "colored",
+            autoClose: 3000,
+          });
           Navigate("/");
         }
       });
   };
 
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <></>;
 };
 
 export default JobsDelete;

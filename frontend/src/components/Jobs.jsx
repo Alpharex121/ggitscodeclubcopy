@@ -6,24 +6,24 @@ import getUserData from "../utils/getUserData";
 import getJobs from "../utils/getJobs";
 import { Link, useNavigate } from "react-router-dom";
 import JobShimmer from "./shimmers/JobShimmer";
+import { useDispatch, useSelector } from "react-redux";
 
 const Jobs = () => {
   const Navigate = useNavigate();
-  const [shimdata, setShimData] = useState([]);
-  const user = getUserData([]);
-  const jobs = getJobs([]);
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const jobs = useSelector((store) => store.datas.jobsData);
 
   useEffect(() => {
-    setShimData(jobs); // This will log the previous state, not the updated one
-  }, [jobs]); // Include data in the dependency array to trigger useEffect when data changes
+    !jobs && getJobs(dispatch);
+  }, []);
 
   return (
     <>
-      <Header />
       <div className="container h-full bg-gray-100 max-w-full py-6 md:py-10 lg:py-14">
         <div className="mx-auto max-w-5xl px-4">
           <div className="space-y-6">
-            {user.role === "admin" || user.role === "jobs" ? (
+            {user != null && (user.role == "admin" || user.role == "jobs") ? (
               <Link to="/jobspost">
                 <div className="flex justify-end w-3/4 mb-4">
                   <Button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
@@ -39,10 +39,10 @@ const Jobs = () => {
               <p className="mx-auto max-w-[600px] text-center text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Get the latest jobs & internship with easy apply link.
               </p>
-              {!shimdata.length ? (
+              {!jobs ? (
                 <JobShimmer />
               ) : (
-                shimdata.map((job, index) => (
+                jobs.map((job, index) => (
                   <div key={index} className="relative mb-4">
                     <JobCard
                       title={job.title}
@@ -52,7 +52,8 @@ const Jobs = () => {
                       eligibility={job.eligibility}
                       uploadDate={String(job.createdAt).substring(0, 10)}
                     />
-                    {user.role === "admin" || user.role === "jobs" ? (
+                    {user != null &&
+                    (user.role == "admin" || user.role == "jobs") ? (
                       <div className="flex justify-end mt-2  w-3/4">
                         <Link to={"/jobsedit/" + job._id}>
                           <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">

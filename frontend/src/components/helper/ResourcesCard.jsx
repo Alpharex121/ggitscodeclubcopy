@@ -22,7 +22,7 @@ const ResourcesCard = ({ title, description, tag, link, moredescription }) => {
           </div>
           <p className="text-sm leading-relaxed">{description}</p>
           <div className="flex items-center gap-2">
-            <Link to={link}>
+            <Link to={link} target="_blank">
               <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground">
                 View Source
               </button>
