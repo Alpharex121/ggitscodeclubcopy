@@ -40,15 +40,15 @@ import getNews from "./utils/getNews";
 
 const App = () => {
   return (
-    <div>
+    <>
       <Provider store={appStore}>
-        <PerModal />
-        <ToastContainer />
         <Header />
         <Outlet />
         <Footer />
+        <PerModal />
+        <ToastContainer />
       </Provider>
-    </div>
+    </>
   );
 };
 
