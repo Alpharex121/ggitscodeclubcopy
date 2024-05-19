@@ -47,6 +47,7 @@ router.get("/logout", auth, async (req, res) => {
         path: "/",
       });
       await req.user.save();
+      res.status(200).redirect("/");
       res.status(200).send("logout successfull");
     }
   } catch (error) {
