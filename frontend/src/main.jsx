@@ -59,134 +59,134 @@ import { Provider } from "react-redux";
 import appStore from "./reduxStore/mainStore";
 import getNews from "./utils/getNews";
 
-// const appRouter = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       {
-//         index: true,
-//         element: <div>Deafult path ele</div>,
-//       },
-//       {
-//         path: "/hehehe",
-//         element: <div>slashed hehehe path ele</div>,
-//       },
-//       {
-//         path: "leaderboard",
-//         element: <MainBody />,
-//       },
-//       {
-//         path: "/leaderboardpost",
-//         element: <LeaderBoardPost />,
-//       },
-//       {
-//         path: "/leaderboardedit/:personid",
-//         element: <LeaderBoardEdit />,
-//       },
-//       //
-//       {
-//         path: "/leaderboarddelete/:personid",
-//         element: <LeaderBoardDelete />,
-//       },
-//       {
-//         path: "news",
-//         element: <News />,
-//       },
-//       {
-//         path: "/newspost",
-//         element: <NewsPost />,
-//       },
-//       {
-//         path: "/newsedit/:newsid",
-//         element: <NewsEdit />,
-//       },
-//       {
-//         path: "/newsdelete/:newsid",
-//         element: <NewsDelete />,
-//       },
-//       {
-//         path: "/jobs",
-//         element: <Jobs />,
-//       },
-//       {
-//         path: "/jobspost",
-//         element: <JobsPost />,
-//       },
-//       {
-//         path: "/jobsedit/:jobid",
-//         element: <JobsEdit />,
-//       },
-//       {
-//         path: "/jobsdelete/:jobid",
-//         element: <JobsDelete />,
-//       },
-//       {
-//         path: "/resources",
-//         element: <Resources />,
-//       },
-//       {
-//         path: "/resourcespost",
-//         element: <ResourcesPost />,
-//       },
-//       {
-//         path: "/resourcesdelete/:resourceid",
-//         element: <ResourcesDelete />,
-//       },
-//       {
-//         path: "/resourcesedit/:resourceid",
-//         element: <ResourcesEdit />,
-//       },
-//       {
-//         path: "/hiddenlogin",
-//         element: <Login />,
-//       },
-//       {
-//         path: "/admin",
-//         element: <Admin />,
-//       },
-//       {
-//         path: "/admin/usercreate",
-//         element: <Admincreate />,
-//       },
-//       {
-//         path: "/admin/useredit/:userid",
-//         element: <Adminedit />,
-//       },
-//       {
-//         path: "/admin/userdelete/:userid",
-//         element: <Admindelete />,
-//       },
-//       {
-//         path: "/logout",
-//         element: <Logout />,
-//       },
-//       {
-//         path: "/coreteam",
-//         element: <CoreTeam />,
-//       },
-//     ],
-//   },
-// ]);
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        index: true,
+        element: <div>Deafult path ele</div>,
+      },
+      {
+        path: "/hehehe",
+        element: <div>slashed hehehe path ele</div>,
+      },
+      {
+        path: "leaderboard",
+        element: <MainBody />,
+      },
+      {
+        path: "/leaderboardpost",
+        element: <LeaderBoardPost />,
+      },
+      {
+        path: "/leaderboardedit/:personid",
+        element: <LeaderBoardEdit />,
+      },
+      //
+      {
+        path: "/leaderboarddelete/:personid",
+        element: <LeaderBoardDelete />,
+      },
+      {
+        path: "news",
+        element: <News />,
+      },
+      {
+        path: "/newspost",
+        element: <NewsPost />,
+      },
+      {
+        path: "/newsedit/:newsid",
+        element: <NewsEdit />,
+      },
+      {
+        path: "/newsdelete/:newsid",
+        element: <NewsDelete />,
+      },
+      {
+        path: "/jobs",
+        element: <Jobs />,
+      },
+      {
+        path: "/jobspost",
+        element: <JobsPost />,
+      },
+      {
+        path: "/jobsedit/:jobid",
+        element: <JobsEdit />,
+      },
+      {
+        path: "/jobsdelete/:jobid",
+        element: <JobsDelete />,
+      },
+      {
+        path: "/resources",
+        element: <Resources />,
+      },
+      {
+        path: "/resourcespost",
+        element: <ResourcesPost />,
+      },
+      {
+        path: "/resourcesdelete/:resourceid",
+        element: <ResourcesDelete />,
+      },
+      {
+        path: "/resourcesedit/:resourceid",
+        element: <ResourcesEdit />,
+      },
+      {
+        path: "/hiddenlogin",
+        element: <Login />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
+      },
+      {
+        path: "/admin/usercreate",
+        element: <Admincreate />,
+      },
+      {
+        path: "/admin/useredit/:userid",
+        element: <Adminedit />,
+      },
+      {
+        path: "/admin/userdelete/:userid",
+        element: <Admindelete />,
+      },
+      {
+        path: "/logout",
+        element: <Logout />,
+      },
+      {
+        path: "/coreteam",
+        element: <CoreTeam />,
+      },
+    ],
+  },
+]);
 
-const Routing = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route index={true} element={<MainBody />}></Route>
-        <Route path="/news" element={<News />}></Route>
-      </Route>
-    </Routes>
-  );
-};
+// const Routing = () => {
+//   return (
+//     <Routes>
+//       <Route path="/" element={<App />}>
+//         <Route index={true} element={<MainBody />}></Route>
+//         <Route path="/news" element={<News />}></Route>
+//       </Route>
+//     </Routes>
+//   );
+// };
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <>
-    {/* <RouterProvider router={appRouter} /> */}
-    <BrowserRouter>
+    <RouterProvider router={appRouter} />
+    {/* <BrowserRouter>
       <Routing />
-    </BrowserRouter>
+    </BrowserRouter> */}
   </>
   // </React.StrictMode>,
 );
