@@ -8,14 +8,20 @@ import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import PerModal from "./PerModal";
 
 // import func from "./temp";
 
 function MainBody() {
-  const [shimdata, setShimData] = useState([]);
+  // const [shimdata, setShimData] = useState([]);
+  const [showRegister, setShowRegister] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const data = useSelector((store) => store.datas.leaderboardData);
+
+  const toggleRegisterForm = () => {
+    setShowRegister(!showRegister);
+  };
 
   useEffect(() => {
     !data && getLeaderboard(dispatch);
@@ -51,6 +57,16 @@ function MainBody() {
                 data-id="26"
               >
                 Master the art of coding. Compete with your peers.
+                <h1>
+                  Join the leaderboard :{" "}
+                  <button
+                    onClick={toggleRegisterForm}
+                    type="button"
+                    class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm p-1 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  >
+                    Click here
+                  </button>
+                </h1>
               </p>
             </div>
             <div
@@ -90,6 +106,7 @@ function MainBody() {
                   </div>
                 ))
               )}
+              {showRegister && <PerModal />}
             </div>
           </div>
         </div>

@@ -48,7 +48,7 @@ const App = () => {
         <Header />
         <Outlet />
         <Footer />
-        <PerModal />
+        {/* <PerModal /> */}
         <ToastContainer />
       </Provider>
     </>
