@@ -41,7 +41,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="container h-6  w-full   flex pt-1 pl-2  justify-center  sm:bg-gray-100   sm:flex sm:max-w-full sm:items-center sm:gap-4 sm:px-4 sm:py-2 md:gap-6 md:px-6">
+    <div className="container   w-full h-10   flex pt-1 pl-2  justify-center    sm:flex sm:max-w-full sm:items-center sm:gap-4 sm:px-4 sm:py-2 md:gap-6 md:px-6">
       <a className=" hidden sm:flex gap-2 font-semibold items-center dark:text-black-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -4,9 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addJobs } from "../../../reduxStore/dataSlice";
 
 const JobsPost = () => {
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jobs = useSelector((store) => store.datas.jobsData);
   const [user, setUser] = useState("");
   const api = axios.create({
     withCredentials: true,
@@ -42,7 +46,6 @@ const JobsPost = () => {
   });
 
   const handleOnSubmit = (e) => {
-    console.log("sfasdsfd");
     e.preventDefault();
     const title = e.target.title.value;
     const description = e.target.description.value;
@@ -58,12 +61,26 @@ const JobsPost = () => {
         link,
       })
       .then((response) => {
+        const newdata = {
+          title: title,
+          description: description,
+          tag: tag,
+          link: link,
+          eligibility: eligibility,
+        };
+        console.log(newdata);
         if (response.status == 200) {
           toast.success("Job posted successfully!", {
             theme: "colored",
             autoClose: 3000,
             position: "top-center",
           });
+          const myArray = [];
+          jobs.map((jobs) => {
+            myArray.push(jobs);
+          });
+          myArray.unshift(newdata);
+          dispatch(addJobs(myArray));
           Navigate("/jobs");
         } else {
           toast.error("Error occured while posting job", {

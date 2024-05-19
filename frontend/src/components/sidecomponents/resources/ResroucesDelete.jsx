@@ -3,8 +3,12 @@ import Header from "../../Header";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addResources } from "../../../reduxStore/dataSlice";
 
 const ResourcesDelete = () => {
+  const resources = useSelector((store) => store.datas.resourcesData);
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const { resourceid } = useParams();
   const [user, setUser] = useState("");
@@ -43,15 +47,9 @@ const ResourcesDelete = () => {
   useEffect(() => {
     getUserData();
     if (user == "admin" || user == "resources") {
-      const ans = confirm("do you want to delete the resource? ");
-      if (ans == false) {
-        Navigate("/resources");
-        return;
-      } else {
-        deleteNews();
-        Navigate("/resources");
-        return;
-      }
+      deleteNews();
+      Navigate("/resources");
+      return;
     }
   });
 
@@ -65,8 +63,12 @@ const ResourcesDelete = () => {
             autoClose: 3000,
             position: "top-center",
           });
+          const myArray = [];
+          resources.map((resource) => {
+            if (resource._id != response.data._id) myArray.push(resource);
+          });
+          dispatch(addResources(myArray));
           Navigate("/resources");
-          console.log(response);
         } else {
           toast.error("Error occured while deleting resource!", {
             theme: "colored",

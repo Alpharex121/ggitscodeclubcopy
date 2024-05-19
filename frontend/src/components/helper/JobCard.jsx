@@ -10,12 +10,12 @@ const JobComponent = ({
   uploadDate,
 }) => {
   return (
-    <div className="flex justify-center items-center my-3">
+    <div className="flex justify-center items-center mt-6">
       <div
-        className="rounded-lg shadow-lg bg-white border bg-card text-card-foreground  w-full max-w-lg"
+        className="rounded-lg shadow-lg   bg-white border bg-card text-card-foreground  w-full max-w-lg"
         data-v0-t="card"
       >
-        <div className="p-6">
+        <div className="p-6 ">
           <div className="flex align-middle  justify-between">
             <h2 className="text-2xl font-bold leading-tight">{title}</h2>
             <p className="leading-tight  my-1">{uploadDate}</p>

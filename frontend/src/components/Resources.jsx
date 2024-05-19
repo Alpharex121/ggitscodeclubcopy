@@ -8,9 +8,12 @@ import Header from "./Header";
 import ResourcesCard from "./helper/ResourcesCard";
 import ResourceShimmer from "./shimmers/ResourceShimmer";
 import { useDispatch, useSelector } from "react-redux";
+import { ConfirmPopup } from "primereact/confirmpopup";
 const Resources = () => {
   const Navigate = useNavigate();
   const [shimdata, setShimData] = useState([]);
+  const [deleteData, setDeleteData] = useState(false);
+  const [resourceid, setResourceid] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const resources = useSelector((store) => store.datas.resourcesData);
@@ -18,6 +21,13 @@ const Resources = () => {
   useEffect(() => {
     !resources && getResources(dispatch);
   }, []);
+
+  const accept = () => {
+    Navigate("/resourcesdelete/" + resourceid);
+  };
+  const reject = () => {
+    toast.success("Deletion canceled");
+  };
 
   return (
     <>
@@ -35,7 +45,7 @@ const Resources = () => {
               </Link>
             ) : null}
             <div className="space-y-2 ">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl text-center md:text-5xl">
+              <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl text-center md:text-5xl">
                 BEST RESOURCES TO LEARN
               </h1>
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
@@ -45,8 +55,8 @@ const Resources = () => {
                 <ResourceShimmer />
               ) : (
                 resources.map((resource, index) => (
-                  <div key={index} className="flex flex-col ">
-                    <div className="w-full ">
+                  <div key={index} className="flex flex-col  ">
+                    <div className="w-full  mt-6 ">
                       <ResourcesCard
                         title={resource.title}
                         description={resource.description}
@@ -57,17 +67,33 @@ const Resources = () => {
                     </div>
                     {user != null &&
                     (user.role == "admin" || user.role == "resources") ? (
-                      <div className="flex mt-2 ml-auto">
+                      <div className="flex  ml-auto 100  mr-6">
                         <Link to={"/resourcesedit/" + resource._id}>
                           <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Edit
                           </Button>
                         </Link>
-                        <Link to={"/resourcesdelete/" + resource._id}>
-                          <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
-                            Delete
-                          </Button>
-                        </Link>
+                        <Button
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                          id="button"
+                          onClick={() => {
+                            setDeleteData(true);
+                            setResourceid(resource._id);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                        <ConfirmPopup
+                          target={document.getElementById("button")}
+                          visible={deleteData}
+                          onHide={() => setDeleteData(false)}
+                          acceptClassName="bg-red-500 ml-2 p-1 px-3 border-none hover:bg-red-600"
+                          rejectClassName="bg-blue-500 mr-2 p-1 px-3 border-none hover:bg-blue-600"
+                          message="Are you sure you want to delete this job?"
+                          icon="pi pi-info-circle"
+                          accept={accept}
+                          reject={reject}
+                        />
                       </div>
                     ) : null}
                   </div>

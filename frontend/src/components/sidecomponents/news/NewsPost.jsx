@@ -4,8 +4,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addNews } from "../../../reduxStore/dataSlice";
 
 const NewsPost = () => {
+  const news = useSelector((store) => store.datas.newsData);
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const [user, setUser] = useState("");
   const api = axios.create({
@@ -57,12 +61,26 @@ const NewsPost = () => {
         moredescription,
       })
       .then((response) => {
+        const newdata = {
+          title: title,
+          description: description,
+          tag: tag,
+          link: link,
+          moredescription: moredescription,
+        };
         if (response.status == 200) {
           toast.success("News posted successfully!", {
             theme: "colored",
             autoClose: 3000,
             position: "top-center",
           });
+
+          const myArray = [];
+          news.map((news) => {
+            myArray.push(news);
+          });
+          myArray.unshift(newdata);
+          dispatch(addNews(myArray));
           Navigate("/news");
         } else {
           toast.error("Error occured while posting news!", {

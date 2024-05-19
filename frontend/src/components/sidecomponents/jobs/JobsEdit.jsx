@@ -5,12 +5,16 @@ import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import getNews from "../../../utils/getNews";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addJobs } from "../../../reduxStore/dataSlice";
 
 const JobsEdit = () => {
   const Navigate = useNavigate();
   const { jobid } = useParams();
   const [user, setUser] = useState("");
   const [fileteredData, setFilteredData] = useState([]);
+  const dispatch = useDispatch();
+  const jobs = useSelector((store) => store.datas.jobsData);
   const api = axios.create({
     withCredentials: true,
     headers: {
@@ -71,13 +75,26 @@ const JobsEdit = () => {
         link,
       })
       .then((response) => {
-        console.log(response);
         if (response.status == 200) {
+          const newdata = {
+            title: title,
+            description: description,
+            tag: tag,
+            link: link,
+            eligibility: eligibility,
+          };
           toast.success("Job edited successfully!", {
             theme: "colored",
             autoClose: 3000,
             position: "top-center",
           });
+          const myArray = [];
+          jobs.map((jobs) => {
+            if (jobs._id == response.data._id) {
+              myArray.push(newdata);
+            } else myArray.push(jobs);
+          });
+          dispatch(addJobs(myArray));
           Navigate("/jobs");
         } else {
           toast.error("Error while editing job!", {

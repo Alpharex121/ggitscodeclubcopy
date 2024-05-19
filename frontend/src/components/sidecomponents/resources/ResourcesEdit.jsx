@@ -5,11 +5,15 @@ import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import getNews from "../../../utils/getNews";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addResources } from "../../../reduxStore/dataSlice";
 
 const ResourcesEdit = () => {
   const Navigate = useNavigate();
   const { resourceid } = useParams();
   const [user, setUser] = useState("");
+  const dispatch = useDispatch();
+  const resources = useSelector((store) => store.datas.resourcesData);
   const [fileteredData, setFilteredData] = useState([]);
   const api = axios.create({
     withCredentials: true,
@@ -74,12 +78,26 @@ const ResourcesEdit = () => {
         link,
       })
       .then((response) => {
+        const newdata = {
+          title: title,
+          description: description,
+          moredescription: moredescription,
+          tag: tag,
+          link: link,
+        };
         if (response.status == 200) {
           toast.success("Resources edited successfully!", {
             theme: "colored",
             autoClose: 3000,
             position: "top-center",
           });
+          const myArray = [];
+          resources.map((resource) => {
+            if (resource._id == response.data._id) {
+              myArray.push(newdata);
+            } else myArray.push(resource);
+          });
+          dispatch(addResources(myArray));
           Navigate("/resources");
           return;
         } else {

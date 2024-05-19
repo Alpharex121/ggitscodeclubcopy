@@ -69,7 +69,7 @@ const Admin = () => {
                     <AdminCard username={user.username} role={user.role} />
                   </div>
                   {admin.role === "admin" ? (
-                    <div className="flex mt-2 ml-auto ">
+                    <div className="flex justify-end  ml-3 w-full ">
                       <Link to={"/admin/useredit/" + user._id}>
                         <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                           Edit

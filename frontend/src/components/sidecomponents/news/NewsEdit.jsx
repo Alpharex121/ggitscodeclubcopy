@@ -5,8 +5,12 @@ import Header from "../../Header";
 import getUserData from "../../../utils/getUserData";
 import getNews from "../../../utils/getNews";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addNews } from "../../../reduxStore/dataSlice";
 
 const NewsEdit = () => {
+  const news = useSelector((store) => store.datas.newsData);
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const { newsid } = useParams();
   const [user, setUser] = useState("");
@@ -72,11 +76,25 @@ const NewsEdit = () => {
       })
       .then((response) => {
         if (response.status == 200) {
+          const newdata = {
+            title: title,
+            description: description,
+            tag: tag,
+            link: link,
+            moredescription: moredescription,
+          };
           toast.success("News edited successfully!", {
             theme: "colored",
             autoClose: 3000,
             position: "top-center",
           });
+          const myArray = [];
+          news.map((news) => {
+            if (news._id == response.data._id) {
+              myArray.push(newdata);
+            } else myArray.push(news);
+          });
+          dispatch(addNews(myArray));
           Navigate("/news");
         } else {
           toast.error("Error occured while editing news!", {
