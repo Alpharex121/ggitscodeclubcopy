@@ -54,14 +54,14 @@ import getNews from "./utils/getNews";
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <div>normal path element</div>,
     children: [
       {
-        path: "/",
-        element: <MainBody />,
+        index: true,
+        element: <div>Deafult path ele</div>,
       },
       {
-        path: "/leaderboard",
+        path: "leaderboard",
         element: <MainBody />,
       },
       {
