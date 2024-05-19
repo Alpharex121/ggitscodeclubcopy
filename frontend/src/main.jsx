@@ -76,6 +76,7 @@ const appRouter = createBrowserRouter([
         path: "/leaderboardedit/:personid",
         element: <LeaderBoardEdit />,
       },
+      ///////
       {
         path: "/leaderboarddelete/:personid",
         element: <LeaderBoardDelete />,
