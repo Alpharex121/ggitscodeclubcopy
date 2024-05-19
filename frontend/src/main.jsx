@@ -66,14 +66,10 @@ const appRouter = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Deafult path ele</div>,
+        element: <MainBody />,
       },
       {
-        path: "/hehehe",
-        element: <div>slashed hehehe path ele</div>,
-      },
-      {
-        path: "leaderboard",
+        path: "/leaderboard",
         element: <MainBody />,
       },
       {
@@ -90,7 +86,7 @@ const appRouter = createBrowserRouter([
         element: <LeaderBoardDelete />,
       },
       {
-        path: "news",
+        path: "/news",
         element: <News />,
       },
       {
