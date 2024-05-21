@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "./Header";
 import getUsers from "../utils/getUser";
 import AdminCard from "./helper/AdminCard";
+import NewsShimmer from "./shimmers/NewsShimmer";
 import { Button } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 
@@ -39,6 +40,7 @@ const Admin = () => {
   };
 
   const users = getUsers([]);
+  console.log(users);
   useEffect(() => {
     getUserData();
   }, []);
@@ -63,27 +65,31 @@ const Admin = () => {
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 The power of Everything
               </p>
-              {users.map((user, index) => (
-                <div key={index} className="flex flex-col ">
-                  <div className="w-full">
-                    <AdminCard username={user.username} role={user.role} />
-                  </div>
-                  {admin.role === "admin" ? (
-                    <div className="flex justify-end  ml-3 w-full ">
-                      <Link to={"/admin/useredit/" + user._id}>
-                        <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                          Edit
-                        </Button>
-                      </Link>
-                      <Link to={"/admin/userdelete/" + user._id}>
-                        <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
-                          Delete
-                        </Button>
-                      </Link>
+              {!users.length != 0 ? (
+                <NewsShimmer />
+              ) : (
+                users.map((user, index) => (
+                  <div key={index} className="flex flex-col ">
+                    <div className="w-full">
+                      <AdminCard username={user.username} role={user.role} />
                     </div>
-                  ) : null}
-                </div>
-              ))}
+                    {admin.role === "admin" ? (
+                      <div className="flex justify-end  ml-3 w-full ">
+                        <Link to={"/admin/useredit/" + user._id}>
+                          <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Edit
+                          </Button>
+                        </Link>
+                        <Link to={"/admin/userdelete/" + user._id}>
+                          <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                            Delete
+                          </Button>
+                        </Link>
+                      </div>
+                    ) : null}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
