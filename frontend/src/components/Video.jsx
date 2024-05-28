@@ -1,18 +1,18 @@
 import React from "react";
 export default function Video() {
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6 overflow-hidden bg-red-100">
+    <div className="container mx-auto py-12 px-4 md:px-6  ">
       <h2 className="text-2xl font-bold mb-6">News Videos</h2>
-      <div className="flex gap-6 overflow-x-auto pb-4 ">
+      <div className="flex gap-6 overflow-x-hidden pb-4  ">
         {[1, 2, 3, 4, 5].map((_, index) => (
           <div
             key={index}
-            className="relative group overflow-hidden rounded-lg cursor-pointer shrink-0 w-[300px]"
+            className="relative group overflow-hidden rounded-lg cursor-pointer shrink-0  w-[400px]"
           >
             <iframe
               width="400"
               height="315"
-              src="https://www.youtube.com/embed/oozXqbNDzBw?si=Xu0EQsgl_YENcblL"
+              src="https://www.youtube.com/embed/oozXqbNDzBw?si=Xu0EQsgl_YENcblL?&showinfo=0&controls=0&autohide=1"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

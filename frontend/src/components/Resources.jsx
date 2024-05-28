@@ -9,6 +9,7 @@ import ResourcesCard from "./helper/ResourcesCard";
 import ResourceShimmer from "./shimmers/ResourceShimmer";
 import { useDispatch, useSelector } from "react-redux";
 import { ConfirmPopup } from "primereact/confirmpopup";
+import Video from "./Video";
 const Resources = () => {
   const Navigate = useNavigate();
   const [shimdata, setShimData] = useState([]);
@@ -48,9 +49,11 @@ const Resources = () => {
               <h1 className="text-2xl font-bold tracking-tighter sm:text-4xl text-center md:text-5xl">
                 BEST RESOURCES TO LEARN
               </h1>
+
               <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Get yourself equipped with latest technologies in the industry.
               </p>
+              <Video />
               {!resources ? (
                 <ResourceShimmer />
               ) : (

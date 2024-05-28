@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { ConfirmPopup } from "primereact/confirmpopup";
+import Video from "./Video";
 
 const News = () => {
   const Navigate = useNavigate();
@@ -47,9 +48,13 @@ const News = () => {
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center">
                 TECH NEWS AND UPDATES
               </h1>
-              <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
+              <p className="mx-auto max-w-[1290px]  text-gray-500 md:text-xl/relaxed text-center lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Stay connected to the latest news in the industry.
+                <div className=" w-full">
+                  <Video />
+                </div>
               </p>
+
               {!news ? (
                 <NewsShimmer />
               ) : (
