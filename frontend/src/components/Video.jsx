@@ -1,9 +1,9 @@
 import React from "react";
 export default function Video() {
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6">
+    <div className="container mx-auto py-12 px-4 md:px-6 overflow-hidden bg-red-100">
       <h2 className="text-2xl font-bold mb-6">News Videos</h2>
-      <div className="flex gap-6 overflow-x-auto pb-4">
+      <div className="flex gap-6 overflow-x-auto pb-4 ">
         {[1, 2, 3, 4, 5].map((_, index) => (
           <div
             key={index}

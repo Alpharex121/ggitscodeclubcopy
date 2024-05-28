@@ -23,7 +23,8 @@ router.post("/", auth, async (req, res) => {
       });
 
       const registered = await newJobs.save();
-
+      console.log(registered);
+      console.log(registered._id);
       res.status(200).send(registered);
       // console.log("jobs uploaded successfully");
     } catch (error) {
