@@ -24,7 +24,7 @@ router.post("/", auth, async (req, res) => {
 
       const registered = await newJobs.save();
 
-      res.status(200).send("Job posted successfully");
+      res.status(200).send(jobs);
       // console.log("jobs uploaded successfully");
     } catch (error) {
       res.send("Error while uploading jobs");

@@ -64,6 +64,7 @@ const JobsPost = () => {
         const d = new Date();
         const month = d.getUTCMonth() + 1;
         const date = d.getFullYear() + "-0" + month + "-" + d.getDate();
+        console.log(response);
         const newdata = {
           createdAt: date,
           title: title,
