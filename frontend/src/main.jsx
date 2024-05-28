@@ -58,6 +58,7 @@ import LeaderBoardPost from "./components/sidecomponents/leaderboard/LeaderBoard
 import { Provider } from "react-redux";
 import appStore from "./reduxStore/mainStore";
 import getNews from "./utils/getNews";
+import Video from "./components/Video";
 
 const appRouter = createBrowserRouter([
   {
@@ -120,6 +121,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/resources",
         element: <Resources />,
+      },
+      {
+        path: "/video",
+        element: <Video />,
       },
       {
         path: "/resourcespost",
