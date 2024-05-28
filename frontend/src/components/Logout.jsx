@@ -51,7 +51,9 @@ const Logout = () => {
         Navigate("/");
       }
     } catch (error) {
-      console.log("Error occur while logging out");
+      console.log("Error occur while logging out", error);
+      toast.error("Error occured while logging out!");
+      Navigate("/");
     }
   };
 
