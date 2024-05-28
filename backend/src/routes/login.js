@@ -23,6 +23,8 @@ router.post("/", async (req, res) => {
 
       res.cookie("jwt", token, {
         expires: new Date(Date.now() + 3000000),
+        secure: true,
+        sameSite: "none",
       });
       res.status(200).send(userCred);
     } else {
@@ -39,7 +41,11 @@ router.get("/logout", auth, async (req, res) => {
     const token = req.cookies.jwt;
     if (token) {
       req.user.tokens = [];
-      res.clearCookie("jwt");
+      res.clearCookie("jwt", {
+        sameSite: "none",
+        secure: true,
+        path: "/",
+      });
       await req.user.save();
       res.status(200).send("logout successfull");
     }
