@@ -12,7 +12,7 @@ const api = axios.create({
 
 const getJobs = async (dispatch) => {
   try {
-    const data = await api.get("https://ggitsstudentsapi.vercel.app/jobs");
+    const data = await api.get("https://ggitscodeclubcopy.vercel.app/jobs");
     // console.log(data.data);
     dispatch(addJobs(data.data));
   } catch (error) {

@@ -23,7 +23,7 @@ const ResourcesDelete = () => {
   const getUserData = async () => {
     console.log("getuserdata");
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "resources") {
         setUser(data.data.role);
       } else {
@@ -55,7 +55,7 @@ const ResourcesDelete = () => {
 
   const deleteNews = async () => {
     api
-      .delete("https://ggitsstudentsapi.vercel.app/resources/" + resourceid)
+      .delete("https://ggitscodeclubcopy.vercel.app/resources/" + resourceid)
       .then((response) => {
         if (response.status == 200) {
           toast.success("Resource deleted succesfully!", {

@@ -20,7 +20,7 @@ function Header() {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       const user = data.data;
       const { username, role } = user;
       dispatch(

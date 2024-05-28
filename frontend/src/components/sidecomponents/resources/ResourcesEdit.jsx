@@ -24,7 +24,7 @@ const ResourcesEdit = () => {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "resources") {
         setUser(data.data.role);
         return;
@@ -48,7 +48,7 @@ const ResourcesEdit = () => {
 
   const getFilteredData = async () => {
     const datas = await axios.get(
-      "https://ggitsstudentsapi.vercel.app/resources/"
+      "https://ggitscodeclubcopy.vercel.app/resources/"
     );
     datas.data.map((data) => {
       if (data._id == resourceid) {
@@ -70,7 +70,7 @@ const ResourcesEdit = () => {
     const tag = e.target.tag.value;
     const link = e.target.link.value;
     api
-      .put("https://ggitsstudentsapi.vercel.app/resources/" + resourceid, {
+      .put("https://ggitscodeclubcopy.vercel.app/resources/" + resourceid, {
         title,
         description,
         moredescription,

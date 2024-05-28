@@ -20,7 +20,7 @@ const Adminedit = () => {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role == "admin") {
         setUser(data.data.role);
       } else {
@@ -43,7 +43,7 @@ const Adminedit = () => {
 
   const getFilteredData = async () => {
     try {
-      const datas = await api.get("https://ggitsstudentsapi.vercel.app/admin");
+      const datas = await api.get("https://ggitscodeclubcopy.vercel.app/admin");
       datas.data.map((data) => {
         if (data._id == userid) {
           setFilteredData(data);
@@ -64,7 +64,7 @@ const Adminedit = () => {
     const username = e.target.username.value;
     const role = e.target.role.value;
     api
-      .put("https://ggitsstudentsapi.vercel.app/admin/" + userid, {
+      .put("https://ggitscodeclubcopy.vercel.app/admin/" + userid, {
         username,
         role,
       })

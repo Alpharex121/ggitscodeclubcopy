@@ -21,7 +21,7 @@ const JobsEdit = () => {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role === "admin" || data.data.role === "jobs") {
         setUser(data.data.role);
       } else {
@@ -43,7 +43,7 @@ const JobsEdit = () => {
   const getFilteredData = async () => {
     try {
       const response = await axios.get(
-        "https://ggitsstudentsapi.vercel.app/jobs"
+        "https://ggitscodeclubcopy.vercel.app/jobs"
       );
       const data = response.data.find((data) => data._id === jobid);
       if (data) {
@@ -67,7 +67,7 @@ const JobsEdit = () => {
     const eligibility = e.target.eligibility.value;
     const link = e.target.link.value;
     api
-      .put(`https://ggitsstudentsapi.vercel.app/jobs/${jobid}`, {
+      .put(`https://ggitscodeclubcopy.vercel.app/jobs/${jobid}`, {
         title,
         description,
         tag,

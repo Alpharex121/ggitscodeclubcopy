@@ -24,7 +24,7 @@ const NewsEdit = () => {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
+      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "news") {
         setUser(data.data.role);
       } else {
@@ -46,7 +46,7 @@ const NewsEdit = () => {
   };
 
   const getFilteredData = async () => {
-    const datas = await axios.get("https://ggitsstudentsapi.vercel.app/news");
+    const datas = await axios.get("https://ggitscodeclubcopy.vercel.app/news");
     datas.data.map((data) => {
       if (data._id == newsid) {
         setFilteredData(data);
@@ -67,7 +67,7 @@ const NewsEdit = () => {
     const tag = e.target.tag.value;
     const link = e.target.link.value;
     api
-      .put("https://ggitsstudentsapi.vercel.app/news/" + newsid, {
+      .put("https://ggitscodeclubcopy.vercel.app/news/" + newsid, {
         title,
         description,
         moredescription,
