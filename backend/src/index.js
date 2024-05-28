@@ -11,6 +11,7 @@ const auth = require("./middleware/auth.js");
 require("./db/Connection.js");
 
 const allowedOrigins = [
+  "https://ggitscodeclubcopy-up9q.vercel.app",
   "https://ggits-coding-club.vercel.app",
   "https://www.dpcoding.club",
 ];
