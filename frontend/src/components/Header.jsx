@@ -20,7 +20,7 @@ function Header() {
 
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
       const user = data.data;
       const { username, role } = user;
       dispatch(
@@ -128,7 +128,7 @@ function Header() {
           </Link>
         </ul>
       </nav>
-      {user != null ? (
+      {user && user.role != null ? (
         <Link to="/logout">
           <div className="flex items-center gap-4 md:gap-2" data-id="18">
             <a

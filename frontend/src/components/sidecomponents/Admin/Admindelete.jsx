@@ -19,7 +19,7 @@ const Admindelete = () => {
   const getUserData = async () => {
     console.log("getuserdata");
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
       if (data.data.role == "admin") {
         setUser(data.data.role);
       } else {
@@ -42,22 +42,16 @@ const Admindelete = () => {
 
   useEffect(() => {
     getUserData();
-    const ans = confirm("do you want to delete the user? ");
     if (user == "admin") {
-      if (ans == false) {
-        Navigate("/admin");
-        return;
-      } else {
-        deleteUser();
-        Navigate("/admin");
-        return;
-      }
+      deleteUser();
+      Navigate("/admin");
+      return;
     }
   });
 
   const deleteUser = async () => {
     api
-      .delete("https://ggitscodeclubcopy.vercel.app/admin/" + userid)
+      .delete("https://ggitsstudentsapi.vercel.app/admin/" + userid)
       .then((response) => {
         console.log(response);
         if (response.status == 200) {

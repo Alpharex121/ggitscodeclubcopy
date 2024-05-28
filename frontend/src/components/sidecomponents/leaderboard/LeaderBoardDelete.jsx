@@ -18,7 +18,7 @@ const LeaderBoardDelete = () => {
   });
   const getUserData = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/login");
+      const data = await api.get("https://ggitsstudentsapi.vercel.app/login");
       if (data.data.role == "admin" || data.data.role == "leaderboard") {
         setUser(data.data.role);
       } else {
@@ -43,21 +43,15 @@ const LeaderBoardDelete = () => {
   useEffect(() => {
     getUserData();
     if (user == "admin" || user == "leaderboard") {
-      const ans = confirm("do you want to delete the news? ");
-      if (ans == false) {
-        Navigate("/leaderboard");
-        return;
-      } else {
-        deleteNews();
-        Navigate("/leaderboard");
-        return;
-      }
+      deleteNews();
+      Navigate("/leaderboard");
+      return;
     }
   });
 
   const deleteNews = async () => {
     api
-      .delete("https://ggitscodeclubcopy.vercel.app/leaderboard/" + personid)
+      .delete("https://ggitsstudentsapi.vercel.app/leaderboard/" + personid)
       .then((response) => {
         console.log(response);
         if (response.status == 200) {

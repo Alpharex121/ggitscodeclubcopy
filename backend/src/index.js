@@ -10,21 +10,29 @@ const port = process.env.PORT || 3000;
 const auth = require("./middleware/auth.js");
 require("./db/Connection.js");
 
+const allowedOrigins = [
+  "https://ggits-coding-club.vercel.app",
+  "https://www.dpcoding.club",
+];
+
 const corsOptionss = {
-  origin: "https://ggitscodeclubcopy-up9q.vercel.app",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET, POST, PUT, DELETE, HEAD",
   credentials: true,
   optionSuccessStatus: 200,
 };
 
 app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://ggitscodeclubcopy-up9q.vercel.app",
-
-    "Access-Control-Allow-Credentials",
-    true
-  );
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
   next();
 });
 
@@ -33,7 +41,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
-//importing routes
+// Importing routes
 const rolesRouter = require("./routes/roles.js");
 const resourcesRouter = require("./routes/resources.js");
 const jobRouter = require("./routes/jobs.js");
@@ -41,7 +49,7 @@ const newsRouter = require("./routes/news.js");
 const loginRouter = require("./routes/login.js");
 const leaderboardRouter = require("./routes/leaderboard.js");
 
-//configuring routes
+// Configuring routes
 app.use("/admin", rolesRouter);
 app.use("/resources", resourcesRouter);
 app.use("/jobs", jobRouter);

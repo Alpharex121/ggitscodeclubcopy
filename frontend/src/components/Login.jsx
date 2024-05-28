@@ -21,7 +21,7 @@ const Login = () => {
       },
     });
     api
-      .post("https://ggitscodeclubcopy.vercel.app/login", {
+      .post("https://ggitsstudentsapi.vercel.app/login", {
         username,
         password,
       })
@@ -41,7 +41,6 @@ const Login = () => {
             autoClose: 3000,
             theme: "colored",
           });
-          alert(`login successfull: ${response.data.role}`);
           navigate("/");
         }
       })

@@ -19,7 +19,7 @@ const getUsers = () => {
 
   const getNews = async () => {
     try {
-      const data = await api.get("https://ggitscodeclubcopy.vercel.app/admin");
+      const data = await api.get("https://ggitsstudentsapi.vercel.app/admin");
       setUsers([...data.data]);
       // dispatch(addUsersdata(users));
     } catch (error) {

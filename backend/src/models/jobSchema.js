@@ -27,7 +27,7 @@ const jobSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true } //added timestamps
+  { timestamps: true }
 );
 
 const addJob = new mongoose.model("job", jobSchema);

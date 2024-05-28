@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": "https://ggitscodeclubcopy.vercel.app",
+      "/api": "https://ggitsstudentsapi.vercel.app",
     },
     watch: {
       usePolling: true,

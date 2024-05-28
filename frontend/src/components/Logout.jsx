@@ -13,7 +13,7 @@ const Logout = () => {
   const verifyUser = async () => {
     try {
       const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login",
+        "https://ggitsstudentsapi.vercel.app/login",
         {
           withCredentials: true,
         }
@@ -36,7 +36,7 @@ const Logout = () => {
   const logoutUser = async () => {
     try {
       const data = await axios.get(
-        "https://ggitscodeclubcopy.vercel.app/login/logout",
+        "https://ggitsstudentsapi.vercel.app/login/logout",
         {
           withCredentials: true,
         }

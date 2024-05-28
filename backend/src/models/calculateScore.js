@@ -273,7 +273,6 @@ async function gfgScore(handle) {
   }
 }
 async function runCalculations(handles) {
-  console.log("calculating score");
   const calculations = await Promise.all(
     handles.map(async (handle) => {
       let score = 0;
@@ -389,7 +388,7 @@ async function runCalculations(handles) {
       return calculationResult;
     })
   );
-  console.log("All calculations:", calculations);
+  // // console.log("All calculations:", calculations);
 
   return calculations;
 }

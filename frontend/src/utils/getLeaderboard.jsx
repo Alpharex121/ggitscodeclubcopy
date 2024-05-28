@@ -5,9 +5,9 @@ import { addLeaderboard } from "../reduxStore/dataSlice";
 
 const getLeaderboard = async (dispatch) => {
   try {
-    // Assuming your backend is running on https://ggitscodeclubcopy.vercel.app/
+    // Assuming your backend is running on https://ggitsstudentsapi.vercel.app/
     const response = await axios.get(
-      "https://ggitscodeclubcopy.vercel.app/leaderboard"
+      "https://ggitsstudentsapi.vercel.app/leaderboard"
     );
     const data = response.data;
     data.sort(sortByScore);
