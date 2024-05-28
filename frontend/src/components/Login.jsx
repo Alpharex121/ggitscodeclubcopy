@@ -34,7 +34,7 @@ const Login = () => {
             autoClose: 3000,
             theme: "colored",
           });
-          navigate("/admin");
+          // navigate("/admin");
         } else {
           toast.success("Login successful: " + response.data.role, {
             position: "top-center",
